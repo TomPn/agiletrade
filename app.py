@@ -247,12 +247,13 @@ def main():
                     st.warning['This username is unavaliable, please change it.']
                     st.experimental_rerun()
                 else:
-                    initial = 100000
-                    add_userdata(new_user, new_password)
-                    create_portfoliotable(new_user)
-                    addto_portfolio(new_user, initial, initial, None, None)
-                    st.success('You have successfully created an account!')
-                    st.success("Go to the Login Menu to login")
+                    continue
+                initial = 100000
+                add_userdata(new_user, new_password)
+                create_portfoliotable(new_user)
+                addto_portfolio(new_user, initial, initial, None, None)
+                st.success('You have successfully created an account!')
+                st.success("Go to the Login Menu to login")
     
     elif choice == 'Home':
         st.subheader('Stock Trading Simulation')
