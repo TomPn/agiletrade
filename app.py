@@ -1,6 +1,5 @@
 import streamlit as st
 import sqlite3 as sql
-import time
 import yfinance as yf
 import pandas as pd
 from sqlalchemy import create_engine
@@ -39,15 +38,15 @@ def duplicates(user, ticker1):
         else: 
             return None
 
-def addto_portfolio(user, portfolio_value, current_cash, ticker1, shares):
+def addto_portfolio(user, portfolio_value, current_cash, ticker, shares):
     query = 'SELECT * FROM {}table'.format(user)
     addto_df = pd.read_sql(query, conn)
-    if ticker1 == None and shares == None:
-        c.execute('INSERT INTO {}table(PORTFOLIO_VALUE,CURRENT_CASH,TICKER,SHARES) VALUES (?,?,?,?)'.format(user), (portfolio_value,current_cash,ticker1,shares))
+    if ticker == None and shares == None:
+        c.execute('INSERT INTO {}table(PORTFOLIO_VALUE,CURRENT_CASH,TICKER,SHARES) VALUES (?,?,?,?)'.format(user), (portfolio_value,current_cash,ticker,shares))
         conn.commit()
-    elif ticker1 == duplicates(user, ticker1):
+    elif ticker == duplicates(user, ticker):
         for k in range(1, len(addto_df.index)):
-            if addto_df['TICKER'][k] == ticker1:
+            if addto_df['TICKER'][k] == ticker:
                 addto_df['SHARES'][k] += shares
                 break
             else:
@@ -56,7 +55,7 @@ def addto_portfolio(user, portfolio_value, current_cash, ticker1, shares):
         conn.commit()
         addto_df.to_sql('{}table'.format(user), con=conn)
     else:
-        c.execute('INSERT INTO {}table(PORTFOLIO_VALUE,CURRENT_CASH,TICKER,SHARES) VALUES (?,?,?,?)'.format(user), (portfolio_value,current_cash,ticker1,shares))
+        c.execute('INSERT INTO {}table(PORTFOLIO_VALUE,CURRENT_CASH,TICKER,SHARES) VALUES (?,?,?,?)'.format(user), (portfolio_value,current_cash,ticker,shares))
         conn.commit()
 
 def sell_portfolio(user, ticker, shares):
@@ -148,8 +147,8 @@ def main():
                     st.session_state.logged_in = False
                     st.experimental_rerun()
 
-                st.write('Your current portfolio value is: {}'.format(str(portfolio_df['PORTFOLIO_VALUE'][0])))
-                st.write('Your current cash is: {}'.format(str(portfolio_df['CURRENT_CASH'][0])))
+                st.write('Your current portfolio value is: ${}'.format(str(portfolio_df['PORTFOLIO_VALUE'][0])))
+                st.write('Your current cash is: ${}'.format(str(portfolio_df['CURRENT_CASH'][0])))
                 st.write('Your current portfolio is: ')
                 st.dataframe(data = portfolio_df.loc[1:,3:4])
         
@@ -165,13 +164,14 @@ def main():
             query = 'SELECT * FROM {}table'.format(st.session_state.username)
             buy_df = pd.read_sql(query, conn)
             current_cash = buy_df['CURRENT_CASH'][0]
-            if st.button('buy'):
+            initial = 100000
+            if st.button('Buy'):
                 if clean(buy_ticker) == None:
                     st.warning('Incorrect ticker, please retry.')
                 elif yf.Ticker(buy_ticker).info['regularMarketPrice'] * buy_share > current_cash:
                     st.warning('Not enough fund for the purchase, please try again')
                 else:
-                    addto_portfolio(st.session_state.username, 100000, 100000, buy_ticker, buy_share)
+                    addto_portfolio(st.session_state.username, initial, initial, buy_ticker, buy_share)
                     update_current_cash(st.session_state.username, yf.Ticker(buy_ticker).info['regularMarketPrice'] * buy_share)
                     update_portfolio_df = pd.read_sql(query, conn)
                     new_cash = update_portfolio_df['CURRENT_CASH'][0]
@@ -190,7 +190,7 @@ def main():
             query = 'SELECT * FROM {}table'.format(st.session_state.username)
             sell_df = pd.read_sql(query, conn)
             current_cash = sell_df['CURRENT_CASH'][0]
-            if st.button('sell'):
+            if st.button('Sell'):
                 if clean(sell_ticker) == None:
                     st.warning('Incorrect ticker, please retry.')
                 elif sell_ticker not in list(sell_df['TICKER']):
@@ -247,6 +247,13 @@ def main():
             add_userdata(new_user, new_password)
             create_portfoliotable(new_user)
             addto_portfolio(new_user, initial, initial, None, None)
-            
+    
+    elif choice == 'Home':
+        st.subheader('Stock Trading Simulation')
+        st.write('Author: Tom Pan')
+        st.write('This platform is only for trading in US market.')
+        st.write('Every player gets $100000 after completing the signup step, and all players are given two options: buy or sell.')
+        st.write('Enjoy Trading!')
+
 if __name__ == '__main__':
     main()
