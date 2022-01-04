@@ -235,25 +235,25 @@ def main():
                 st.warning('incorrect username or password. Please try again.')
 
     elif choice == 'Signup':
-        create_usertable()
         st.subheader('Create a new account')
         new_user = st.text_input('Username')
         new_password = st.text_input('Password', type='password')
         query = 'SELECT * FROM usertable'
         signup_df = pd.read_sql(query, conn)
         if st.button('Signup'):
+            create_usertable()
             for i in range(len(signup_df.index)):
                 if signup_df['username'][i] == new_user:
                     st.warning['This username is unavaliable, please change it.']
                     st.experimental_rerun()
                 else:
                     continue
-                initial = 100000
-                add_userdata(new_user, new_password)
-                create_portfoliotable(new_user)
-                addto_portfolio(new_user, initial, initial, None, None)
-                st.success('You have successfully created an account!')
-                st.success("Go to the Login Menu to login")
+            initial = 100000
+            add_userdata(new_user, new_password)
+            create_portfoliotable(new_user)
+            addto_portfolio(new_user, initial, initial, None, None)
+            st.success('You have successfully created an account!')
+            st.success("Go to the Login Menu to login")
     
     elif choice == 'Home':
         st.subheader('Stock Trading Simulation')
