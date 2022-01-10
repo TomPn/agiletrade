@@ -178,7 +178,7 @@ def main():
                 st.write('Your current portfolio value is: ${}'.format(str(portfolio_df['PORTFOLIO_VALUE'][0])))
                 st.write('Your current cash is: ${}'.format(str(portfolio_df['CURRENT_CASH'][0])))
                 st.write('Your current portfolio is: ')
-                st.dataframe(data = portfolio_df.loc[1:,3:4])
+                st.dataframe(data = portfolio_df.iloc[1:,3:4])
         
         # If the user clicks Buy button, run the following code.
         elif selection == 'Buy':
