@@ -274,7 +274,7 @@ def main():
             create_usertable()
             for i in range(len(signup_df.index)):
                 if signup_df['username'][i] == new_user:
-                    st.warning['This username is unavaliable, please change it.']
+                    st.warning('This username is unavaliable, please change it.')
                     st.experimental_rerun()
                 else:
                     continue
