@@ -269,9 +269,9 @@ def main():
         new_user = st.text_input('Username')
         new_password = st.text_input('Password', type='password')
         query = 'SELECT * FROM usertable'
-        signup_df = pd.read_sql(query, conn)
         if st.button('Signup', key='Signup'):
             create_usertable()
+            signup_df = pd.read_sql(query, conn)
             for i in range(len(signup_df.index)):
                 if signup_df['username'][i] == new_user:
                     st.warning('This username is unavaliable, please change it.')
