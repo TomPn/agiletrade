@@ -95,7 +95,7 @@ def update_portfolio_value(username, cash):
     df = pd.read_sql(query, conn)
     new_value = 0
     for i in range(1,len(df.index)):
-        new_value += df['SHARES'][i]*si.get_quote_data(df['TICKER'][i])['regularMarketPrice']
+        new_value += df['SHARES'][i]*float(si.get_quote_data(df['TICKER'][i])['regularMarketPrice'])
     new_value += cash
     df['PORTFOLIO_VALUE'][0] = new_value
     c.execute('DROP TABLE {}table'.format(username))
@@ -158,8 +158,8 @@ def main():
             # Convert the sql table to a pandas dataframe and extracts the first portfolio value and cash value from the dataframe.
             query = 'SELECT * FROM {}table'.format(st.session_state.username)
             portfolio_df = pd.read_sql(query, conn)
-            st.write('Your current portfolio value is: {}'.format(str(portfolio_df['PORTFOLIO_VALUE'][0])))
-            st.write('Your current cash is: {}'.format(str(portfolio_df['CURRENT_CASH'][0])))
+            st.write('Your current portfolio value is: ${}'.format(str(portfolio_df['PORTFOLIO_VALUE'][0])))
+            st.write('Your current cash is: ${}'.format(str(portfolio_df['CURRENT_CASH'][0])))
             
             # Demonstrate the entire user portfolio
             st.write('Your current portfolio is: ')
@@ -168,17 +168,7 @@ def main():
             # If the user clicks Update button, run update_portfolio_value() and rebuild the page same as above.
             if st.button('Update', key='Update'):
                 update_portfolio_value(st.session_state.username, portfolio_df['CURRENT_CASH'][0])
-                st.empty().empty()
-                st.subheader('{}\'s Portfolio'.format(st.session_state.username))
-
-                if st.sidebar.button('Logout', key='2'):
-                    st.session_state.logged_in = False
-                    st.experimental_rerun()
-
-                st.write('Your current portfolio value is: ${}'.format(str(portfolio_df['PORTFOLIO_VALUE'][0])))
-                st.write('Your current cash is: ${}'.format(str(portfolio_df['CURRENT_CASH'][0])))
-                st.write('Your current portfolio is: ')
-                st.dataframe(data = portfolio_df.iloc[1:,3:4])
+                st.experimental_rerun()
         
         # If the user clicks Buy button, run the following code.
         elif selection == 'Buy':
