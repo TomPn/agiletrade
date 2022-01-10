@@ -151,7 +151,7 @@ def main():
             st.subheader('{}\'s Portfolio'.format(st.session_state.username))
 
             # If the user clicks Logout button, change the logged_in state to False and rerun the entire program.
-            if st.sidebar.button('Logout'):
+            if st.sidebar.button('Logout', key='1'):
                 st.session_state.logged_in = False
                 st.experimental_rerun()
             
@@ -171,7 +171,7 @@ def main():
                 st.empty().empty()
                 st.subheader('{}\'s Portfolio'.format(st.session_state.username))
 
-                if st.sidebar.button('Logout'):
+                if st.sidebar.button('Logout', key='2'):
                     st.session_state.logged_in = False
                     st.experimental_rerun()
 
@@ -187,7 +187,7 @@ def main():
             st.subheader('Buy Stock')
             
             # If the user clicks Logout button, change the logged_in state to False and rerun the entire program.
-            if st.sidebar.button('Logout'):
+            if st.sidebar.button('Logout', key='3'):
                 st.session_state.logged_in = False
                 st.experimental_rerun()
             
@@ -221,7 +221,7 @@ def main():
         elif selection == 'Sell':
             st.empty().empty()
             st.subheader('Sell Stock')
-            if st.sidebar.button('Logout'):
+            if st.sidebar.button('Logout', key='4'):
                 st.session_state.logged_in = False
                 st.experimental_rerun()
             sell_ticker = st.text_input('Ticker')
