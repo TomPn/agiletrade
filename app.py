@@ -273,7 +273,7 @@ def main():
             create_usertable()
             signup_df = pd.read_sql(query, conn)
             for i in range(len(signup_df.index)):
-                if type(new_user[0]) == int:
+                if new_user[0].isdigit():
                     st.warning('First character cannot be a number, please change it.')
                     st.experimental_rerun()
                 if signup_df['username'][i] == new_user:
@@ -291,7 +291,7 @@ def main():
     elif choice == 'Home':
         st.subheader('Stock Trading Simulation')
         st.write('Author: Tom Pan')
-        st.write('This platform is only for trading in US market, and no partial trades are allowed.')
+        st.write('This platform is only for trading in US market.')
         st.write('Every player gets $100000 after completing the signup step, and all players are given two options: buy or sell.')
         st.write('Enjoy Trading!')
 
