@@ -214,7 +214,7 @@ def main():
             if st.sidebar.button('Logout', key='4'):
                 st.session_state.logged_in = False
                 st.experimental_rerun()
-            sell_ticker = st.text_input('Ticker')
+            sell_ticker = st.text_input('Ticker').upper()
             sell_share = st.number_input('Share')
 
             query = 'SELECT * FROM {}table'.format(st.session_state.username)
