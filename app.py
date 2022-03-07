@@ -182,7 +182,7 @@ def main():
                 st.experimental_rerun()
             
             # Create inputs that allows user to enter ticker and amount of share they want to buy.
-            buy_ticker = st.text_input('Ticker')
+            buy_ticker = st.text_input('Ticker').capitalize()
             buy_share = st.number_input('Share')
 
             query = 'SELECT * FROM {}table'.format(st.session_state.username)
@@ -273,6 +273,9 @@ def main():
             create_usertable()
             signup_df = pd.read_sql(query, conn)
             for i in range(len(signup_df.index)):
+                if type(new_user[0]) == int:
+                    st.warning('First character cannot be a number, please change it.')
+                    st.experimental_rerun()
                 if signup_df['username'][i] == new_user:
                     st.warning('This username is unavaliable, please change it.')
                     st.experimental_rerun()
@@ -288,7 +291,7 @@ def main():
     elif choice == 'Home':
         st.subheader('Stock Trading Simulation')
         st.write('Author: Tom Pan')
-        st.write('This platform is only for trading in US market.')
+        st.write('This platform is only for trading in US market, and no partial trades are allowed.')
         st.write('Every player gets $100000 after completing the signup step, and all players are given two options: buy or sell.')
         st.write('Enjoy Trading!')
 

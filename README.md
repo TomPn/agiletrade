@@ -8,4 +8,4 @@ The goal of this project is to establish a platform with a login authentication 
 https://stock-trading-platform.herokuapp.com/
 
 ## Data Management
-All financial data is extracted from yahoo finance, manipulated using pandas and presented using Streamlit. All user data is are stored in a SQL database and manipulated using both SQL and pandas. 
+All financial data is extracted from Yahoo Finance API, cleaned and wrangled using pandas and presented using Streamlit. All user data is are stored in a database management system using both SQLite and Pandas. 
