@@ -182,7 +182,7 @@ def main():
                 st.experimental_rerun()
             
             # Create inputs that allows user to enter ticker and amount of share they want to buy.
-            buy_ticker = st.text_input('Ticker').capitalize()
+            buy_ticker = st.text_input('Ticker').upper()
             buy_share = st.number_input('Share')
 
             query = 'SELECT * FROM {}table'.format(st.session_state.username)
