@@ -6,9 +6,6 @@
 ## What is AgileTrade?
 AgileTrade is a stock trading platform that provides the young investors with an opportunity to gain practical experiences in stock trading process. The platform can be accessed through the link [here](https://stock-trading-platform.herokuapp.com/).
 
-## Namesake
-Agile is an iterative approach to software development that helps us deliver value to our users faster. We want to achieve the agile environment for the product in order to provide better services to the users.
-
 ### Vision (objective)
 The objective of AgileTrade is to provide an opportunity for amateur investors to gain fundamental understanding of stock market, with a safe trading platform for the users to gain experiences in trading stocks.
 
