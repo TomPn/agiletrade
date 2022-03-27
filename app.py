@@ -289,7 +289,7 @@ def main():
             st.success("Go to the Login Menu to login")
     
     elif choice == 'Home':
-        st.subheader('Agile Trade')
+        st.subheader('AgileTrade')
         st.write('Author: Tom Pan')
         st.write('This platform is specifically for stock trading in US market.')
         st.write('Each user gets $100,000 after completing the signup step, with two options provided: buy or sell.')
