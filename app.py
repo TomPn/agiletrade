@@ -289,10 +289,10 @@ def main():
             st.success("Go to the Login Menu to login")
     
     elif choice == 'Home':
-        st.subheader('Stock Trading Simulation')
+        st.subheader('Agile Trade')
         st.write('Author: Tom Pan')
-        st.write('This platform is only for trading in US market.')
-        st.write('Every player gets $100000 after completing the signup step, and all players are given two options: buy or sell.')
+        st.write('This platform is specifically for stock trading in US market.')
+        st.write('Each user gets $100,000 after completing the signup step, with two options provided: buy or sell.')
         st.write('Enjoy Trading!')
 
 if __name__ == '__main__':
