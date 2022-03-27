@@ -18,7 +18,7 @@ The core functionality of AgileTrade facilitates the users to trade stocks in US
 The platform has shown success in the real world, as it maintains stable and safe with over 50 students actively trading during one of the competitions held by Red Robin Financial.
 
 ### Demo:
-[![Watch the video](https://s29755.pcdn.co/wp-content/uploads/2019/07/FWLIVE_CHI_Web-05.png)](https://youtu.be/QxiApmEZTK4)
+[![Watch the video](https://s29755.pcdn.co/wp-content/uploads/2019/07/FWLIVE_CHI_Web-05.png)](https://youtu.be/RPBJAClDS4I)
 
 ### Status
 AgileTrade has been in development since November 2021, with new features and iterations currently in progress.
