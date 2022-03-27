@@ -1,7 +1,7 @@
 # AgileTrade
 > A safe stock trading platform for youth investors.
 
-![AgileTrade Image](https://github.com/TomPn/AgileTrade/blob/Master/IMG_1031.jpg?raw=true)
+![AgileTrade Image](https://github.com/TomPn/AgileTrade/blob/master/IMG_1031.jpg?raw=true)
 
 ## What is AgileTrade?
 AgileTrade is a stock trading platform that provides the young investors with an opportunity to gain practical experiences in stock trading process. The platform can be accessed through the link [here](https://stock-trading-platform.herokuapp.com/).
