@@ -21,7 +21,7 @@ The platform has shown success in the real world, as it maintains stable and saf
 [![Watch the video](https://s29755.pcdn.co/wp-content/uploads/2019/07/FWLIVE_CHI_Web-05.png)](https://youtu.be/RPBJAClDS4I)
 
 ### Status
-AgileTrade has been in development since November 2021, with new features and iterations currently in progress.
+AgileTrade has been in development since January 2022, with new features and iterations currently in progress.
 
 ### Tech Stack
 AgileTrade is built with the Python language and uses various Python libraries to optimize its functionality.
